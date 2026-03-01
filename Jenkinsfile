@@ -80,8 +80,4 @@ pipeline {
             }
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> refs/remotes/origin/develop
