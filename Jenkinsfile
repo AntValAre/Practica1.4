@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Get Code') {
             steps {
-                git branch: 'develop', url: 'https://github.com/AntValAre/Practica1.4.git'
+                git branch: 'develop', url: 'https://github.com/AntValAre/todo-list-aws.git'
             }
         }
 
@@ -73,14 +73,14 @@ pipeline {
     
                 withCredentials([usernamePassword(credentialsId: 'GitHub-PAT-Cred', passwordVariable: 'GIT_TOKEN', usernameVariable: 'GIT_USERNAME')]) {
                     sh '''
-                        git remote set-url origin https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/AntValAre/Practica1.4.git
+                        git remote set-url origin https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/AntValAre/todo-list-aws.git
                         git fetch origin
                         git checkout master
                         git reset --hard origin/master
                         git merge origin/develop --no-commit --no-ff
                         git checkout HEAD -- Jenkinsfile
                         git commit -m "Promote: Merge develop a master conservando Jenkinsfile de CD"
-                        git push https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/AntValAre/Practica1.4.git master
+                        git push https://${GIT_USERNAME}:${GIT_TOKEN}@github.com/AntValAre/todo-list-aws.git master
                     '''
                 }
             }
